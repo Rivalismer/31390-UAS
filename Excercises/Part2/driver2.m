@@ -28,9 +28,9 @@ dp = [0
 
 % Vector of angular speeds
 Omega = [0
+        10000
         0
-        0
-        0];
+        10000];
 
 omg_vec = [0
     0
