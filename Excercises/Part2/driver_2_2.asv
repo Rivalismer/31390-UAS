@@ -34,6 +34,7 @@ Omega = [0
 
 omg_vec = [0
     0
+    0
     sum(Omega.^2)];
 
 tau = [L*k*(Omega(1)^2 - Omega(3)^2)
