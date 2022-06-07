@@ -26,11 +26,12 @@ dp = [0
     0
     0];
 
+s = sqrt(9.81*m/(4*k));
 % Vector of angular speeds
-Omega = [0
-        10000
-        0
-        10000];
+Omega = [s
+        s
+        s
+        s];
 
 omg_vec = [0
     0
