@@ -9,6 +9,7 @@ In = inv(I);
 g = [0,0,-9.81];
 
 
+
 % Initial conditions
 Theta = [0
     0
@@ -26,7 +27,8 @@ dp = [0
     0
     0];
 
-s = sqrt(9.81*m/(4*k));
+%s = sqrt(9.81*m/(4*k));
+s = 0;
 % Vector of angular speeds
 Omega = [s
         s
