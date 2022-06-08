@@ -30,11 +30,11 @@ u0 = [phi
 
 u1 = [phi
     theta
-    psi
+    ref
     1];
 
 % Transfer func
-tf = [1
+tf = [1 
     1
     1
     1/k];
@@ -43,8 +43,6 @@ mvec = [1
     1
     1
     m];
-
-TF = diag(tf);
 
 tf2 = [L*k, 0, -L*k, 0
     0, L*k, 0, -L*k
@@ -72,28 +70,28 @@ tau = 2*w0*[L*k*(Omega(1) - Omega(3))
     b*(Omega(1) - Omega(2) + Omega(3) - Omega(4))];
 
 %% Plotting
-l = ceil(length(out.Theta(:,1))/2);
+l = ceil(length(out.Theta(1,:))/2);
 lp = ceil(length(out.p(:,1))/2);
-fp = 3000;
+fp = 5000;
 
 close all;
 figure
 subplot(3,1,1)
-plot(out.Theta(l:(l + fp),1))
+plot(out.Theta(1, l:(l + fp)))
 xlabel('Time (ms)')
 ylabel('Value')
 title('\phi - Angle')
 xlim([0 fp])
 
 subplot(3,1,2)
-plot(out.Theta(l:(l + fp),2))
+plot(out.Theta(2, l:(l + fp)))
 xlabel('Time (ms)')
 ylabel('Value')
 title('\Theta - Angle')
 xlim([0 fp])
 
 subplot(3,1,3)
-plot(out.Theta(l:(l + fp),3))
+plot(out.Theta(3, l:(l + fp)))
 xlabel('Time (ms)')
 ylabel('Value')
 title('\psi - Angle')

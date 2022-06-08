@@ -10,8 +10,15 @@ In = inv(I);
 w0 = sqrt(9.81*m/(4*k));
 g = [0,0,-9.81];
 g2 = [0,0,0,-9.81];
+K_pxymax = 0.155;
+T_kpxymax = 5;
 
-% Controller
+% Position Controller
+K_pxy = 0.8*K_pxymax;
+K_dxy = 0.55;
+K_ixy = 0.001*1/5;
+
+% Controller angles
 K_p = 1.9;
 K_d = 2.5*(1/2.65);
 K_i = 0.2*(1/2.65);
@@ -22,16 +29,14 @@ phi = 0;
 theta = 0;
 psi = 0;
 z = 0;
+x = 2;
+y = 2;
 
-u0 = [phi
-    theta
-    psi
+uxy = [x
+    y];
+
+uzp = [psi
     z];
-
-u1 = [phi
-    theta
-    psi
-    1];
 
 % Transfer func
 tf = [1
@@ -56,7 +61,11 @@ TF2 = inv(tf2);
 tf_34 = [L*k, 0, -L*k, 0
     0, L*k, 0, -L*k
     b, -b, b, -b];
+ 
+tf_xy = [0 -1 0
+    1 0 0];
 
+TF_xy = tf_xy*eye(3);
 % Vector of angular speeds
 Omega = [w0
     w0
