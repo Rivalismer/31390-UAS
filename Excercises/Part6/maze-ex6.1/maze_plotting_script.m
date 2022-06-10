@@ -19,10 +19,8 @@ fig_num = 1;
 plot_map(map, fig_num);
 plot_start_stop(start, end_, fig_num)
 
-test1 = map
-test2 = map'
-test3 = fliplr(map')
 route_2d = greedy_2d(rot90(rot90(rot90(map))), start+1, end_+1);
+% save("route_ex61",'route_2d')
 
 plot_route(route_2d, fig_num);
 

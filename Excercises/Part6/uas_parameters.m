@@ -32,7 +32,10 @@ clc
 
 %% SIMULATION PARAMETERS
 
-route = [0 0 1 ; 9 0 1 ; 9 9 1];
+route = load('route_ex61.mat').route_2d-1; %path from ex 6.1
+route = [route ones(size(route,1),1)]
+%route = [0 0 1 ; 9 0 1 ; 9 9 1];
+
 wall_color = [0.8 0.2 0.2];
 sample_time = 4e-2;
 publish_rate = 1 * sample_time;
