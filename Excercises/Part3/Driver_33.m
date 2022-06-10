@@ -10,18 +10,20 @@ In = inv(I);
 w0 = sqrt(9.81*m/(4*k));
 g = [0,0,-9.81];
 g2 = [0,0,0,-9.81];
-K_pxymax = 0.155;
-T_kpxymax = 5;
+
+K_pxymax = 0.143;
+T_cxy = 5.2;
 
 % Position Controller
-K_pxy = 0.8*K_pxymax;
-K_dxy = 0.55;
-K_ixy = 0.001*1/5;
+K_pxy = 0.2; % 0.6* Kpxymax = 0.0858
+K_dxy = 1.25; % Tc/8 = 0.65
+K_ixy = 0; % 2/Tc = 0.3846
 
 % Controller angles
-K_p = 1.9;
-K_d = 2.5*(1/2.65);
-K_i = 0.2*(1/2.65);
+K_p = 1.5;
+K_d = 0.8; %Tc / 8
+K_i = 0.1; %1.4925....
+
 
 ref = 10/180*pi;
 % Reference
@@ -82,9 +84,9 @@ tau = 2*w0*[L*k*(Omega(1) - Omega(3))
 %% Plotting
 %l = ceil(length(out.Theta(:,1))/2);
 %lp = ceil(length(out.p(:,1))/2);
-fp = 100000;
-Ta = linspace(0,100,length(out.Theta(:,1)));
-Tp = linspace(0,100,length(out.p(:,1)));
+fp = 50;
+Ta = linspace(0,fp,length(out.Theta(:,1)));cd Docu
+Tp = linspace(0,fp,length(out.p(:,1)));
 
 close all;
 figure

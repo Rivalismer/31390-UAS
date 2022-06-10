@@ -10,13 +10,20 @@ In = inv(I);
 w0 = sqrt(9.81*m/(4*k));
 g = [0,0,-9.81];
 g2 = [0,0,0,-9.81];
-Km = 1;
-Tc = 1.34;
 
-% Controller
+K_pxymax = 0.143;
+T_cxy = 5.2;
+
+% Position Controller
+K_pxy = 0.19; % 0.6* Kpxymax = 0.0858
+K_dxy = 1.0; % Tc/8 = 0.65
+K_ixy = 0.0017; % 2/Tc = 0.3846
+
+% Controller angles
 K_p = 1.5;
 K_d = 0.8; %Tc / 8
 K_i = 0.1; %1.4925....
+
 
 ref = 10/180*pi;
 % Reference
@@ -24,15 +31,13 @@ phi = 0;
 theta = 0;
 psi = 0;
 z = 0;
+x = 0;
+y = 2;
 
-u0 = [phi
-    theta
-    psi
-    z];
+uxy = [x
+    y];
 
-u1 = [ref
-    theta
-    psi
+uzp = [psi
     z];
 
 % Transfer func
@@ -58,6 +63,9 @@ TF2 = inv(tf2);
 tf_34 = [L*k, 0, -L*k, 0
     0, L*k, 0, -L*k
     b, -b, b, -b];
+ 
+tf_xy = [0 -1 0
+    1 0 0];
 
 % Vector of angular speeds
 Omega = [w0
@@ -74,10 +82,11 @@ tau = 2*w0*[L*k*(Omega(1) - Omega(3))
     b*(Omega(1) - Omega(2) + Omega(3) - Omega(4))];
 
 %% Plotting
-fp = 10;
-Ta = linspace(0,fp,length(out.Theta(:,1)));
-Tp = linspace(0,fp,length(out.p(:,1)));
-Tpl = ceil(length(Tp)/2);
+%l = ceil(length(out.Theta(:,1))/2);
+%lp = ceil(length(out.p(:,1))/2);
+fp = 100000;
+Ta = linspace(0,100,length(out.Theta(:,1)));
+Tp = linspace(0,100,length(out.p(:,1)));
 
 close all;
 figure
@@ -107,23 +116,26 @@ title('\psi - Angle')
 
 figure
 subplot(3,1,1)
-plot(out.p(lp:(lp+fp),3))
-xlabel('Time (ms)')
+%plot(out.p(lp:(lp+fp),3))
+plot(Tp,out.p(:,3))
+xlabel('Time (s)')
 ylabel('Value')
 title('z - Value')
-xlim([0 fp])
-ylim([-1 2])
+%xlim([0 fp])
+%ylim([-1 2])
 
 subplot(3,1,2)
-plot(out.p(lp:(lp+fp),2))
-xlabel('Time (ms)')
+%plot(out.p(lp:(lp+fp),2))
+plot(Tp,out.p(:,2))
+xlabel('Time (s)')
 ylabel('Value')
 title('y - Value')
-xlim([0 fp])
+%xlim([0 fp])
 
 subplot(3,1,3)
-plot(out.p(lp:(lp+fp),1))
-xlabel('Time (ms)')
+%plot(out.p(lp:(lp+fp),1))
+plot(Tp,out.p(:,1))
+xlabel('Time (s)')
 ylabel('Value')
 title('x - Value')
-xlim([0 fp])
+%xlim([0 fp])
