@@ -19,7 +19,7 @@ fig_num = 1;
 plot_map(map, fig_num);
 plot_start_stop(start, end_, fig_num)
 
-route_2d = greedy_2d(rot90(rot90(rot90(map))), start+1, end_+1);
+route = greedy_2d(rot90(rot90(rot90(map))), start+1, end_+1);
 % save("route_ex61",'route_2d')
 
 plot_route(route_2d, fig_num);
@@ -36,7 +36,8 @@ end_ = [7 7 2];
 plot_map(map, fig_num, 0);
 plot_start_stop(start, end_, fig_num)
 
-route_3d = greedy_3d(rot90(rot90(rot90(map))), start+1, end_+1);
+route = greedy_3d(rot90(rot90(rot90(map))), start+1, end_+1);
+% save("route_ex61",'route_2d')
 
 plot_route(route_3d, fig_num);
 
@@ -52,8 +53,8 @@ end_ = [7 7 2];
 plot_map(map, fig_num, 0);
 plot_start_stop(start, end_, fig_num)
 
-route_3d = astar_3d(rot90(rot90(rot90(map))), start+1, end_+1);
+route = astar_3d(rot90(rot90(rot90(map))), start+1, end_+1);
+% save("route_ex61",'route_2d')
 
 plot_route(route_3d, fig_num);
-
 
