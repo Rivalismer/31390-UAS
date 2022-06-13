@@ -1,7 +1,8 @@
-To run the script, open and run the maze_plotting_script. File structure is below.
+To run the script, open and run the maze_plotting_script. File structure is below. Drone path is custom file for plotting the position from simulink (needs to be run before the file)
 
 MAIN
 maze_plotting_script
+drone_path
 
 ALGORITHM IMPLEMENTATION
 astar_3d

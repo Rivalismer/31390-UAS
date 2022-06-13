@@ -26,8 +26,8 @@
 
 % Initialization
 close all
-clear
-clc
+% clear
+% clc
 
 % Trajectory generation
 
@@ -37,13 +37,13 @@ waypoints{1} = [0 ; 0 ; 1];
 waypoints{2} = [9 ; 9 ; 1];
 % Fix this...
 order = 7;
-corridors.times = [1 4];
-corridors.x_lower = [-1 8];
-corridors.x_upper = [1 10];
-corridors.y_lower = [-1 8];
-corridors.y_upper = [1 10];
-corridors.z_lower = [0 0];
-corridors.z_upper = [2 2];
+corridors.times = [1 4]; %[1 4]
+corridors.x_lower = [3 7]; %[-1 8]
+corridors.x_upper = [4 8]; %[1 10]
+corridors.y_lower = [3 8]; %[-1 8]
+corridors.y_upper = [4 9]; %[1 10]
+corridors.z_lower = [1 1]; %[0 0]
+corridors.z_upper = [2 2]; %[2 2]
 % ...until here
 make_plots = true;
 
