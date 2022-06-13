@@ -1,3 +1,6 @@
+% Init
+close all
+
 % Constants
 m = 0.5;
 k = 0.01;
@@ -26,7 +29,6 @@ dp = [0
     0
     0];
 
-w0 = sqrt(9.81*m/(4*k));
 % Vector of angular speeds
 Omega = [10000
     0
@@ -37,6 +39,56 @@ omg_vec = [0
     0
     sum(Omega.^2)];
 
+w0 = sqrt(9.81*m/(4*k));
 tau = 2*w0*[L*k*(Omega(1) - Omega(3))
     L*k*(Omega(2) - Omega(4))
     b*(Omega(1) - Omega(2) + Omega(3) - Omega(4))];
+
+% Plotting
+out = sim('Part2_3.slx', 0:0.05:10);
+figure()
+plot3(out.simout.data(1,:), out.simout.data(2,:), out.simout.data(3,:))
+xlabel('x')
+ylabel('y')
+zlabel('z')
+title('Position of UAV')
+grid
+
+% Roll
+figure()
+subplot(1, 3, 1)
+plot(out.tout, out.simout1.data(:,1)*180/pi) %◙SWITCHED ROW-COLUMN
+xlabel('time [s]')
+ylabel('phi [degree]')
+title('Roll')
+grid
+
+% Pitch
+subplot(1, 3, 2)
+plot(out.tout, out.simout1.data(:,2)*180/pi)
+xlabel('time [s]')
+ylabel('theta [degree]')
+title('Pitch')
+grid
+
+% Yaw
+subplot(1, 3, 3)
+plot(out.tout, out.simout1.data(:,3)*180/pi)
+xlabel('time [s]')
+ylabel('psi [degree]')
+title('Yaw')
+grid
+sgtitle('Angles') 
+
+% Rotors rotation
+% figure()
+% b=0.2; % Radius of the helicopter motors
+% x = (b.*sin(out.p.data(3,:))); % elementwise mult
+% y = (-b.*cos(out.p.data(3,:))); % elementwise mult;
+% z = out.theta.data(3,:);
+% plot3(x, y, z)
+% xlabel('x')
+% ylabel('y')
+% zlabel('z')
+% title('Position of UAV')
+% grid

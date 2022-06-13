@@ -12,7 +12,6 @@ In = inv(I);
 g = [0,0,-9.81];
 
 
-
 % Initial conditions
 Theta = [0
     0
@@ -30,13 +29,15 @@ dp = [0
     0
     0];
 
+%s = sqrt(9.81*m/(4*k));
 % Vector of angular speeds
-Omega = [10000
-        0
+Omega = [0
         10000
-        0];
+        0
+        10000];
 
 omg_vec = [0
+    0
     0
     sum(Omega.^2)];
 
@@ -45,7 +46,7 @@ tau = [L*k*(Omega(1)^2 - Omega(3)^2)
     b*(Omega(1)^2 - Omega(2)^2 + Omega(3)^2 - Omega(4)^2)];
 
 % Plotting
-out = sim('Part2_1.slx', 0:0.05:10);
+out = sim('Part2_2.slx', 0:0.05:10);
 figure()
 plot3(out.simout.data(1,:), out.simout.data(2,:), out.simout.data(3,:))
 xlabel('x')
