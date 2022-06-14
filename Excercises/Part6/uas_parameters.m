@@ -68,3 +68,25 @@ mix_matrix = inv(motor_constant * allocation_matrix) ;
 air_density = 1.2041;
 drag_coefficient = 0.47;
 reference_area = pi * 75e-3^2;
+
+K_pxy = 5.0;
+K_dxy = 2.8;
+K_ixy = 0.0;
+
+route = [
+    0 0 1
+    7 0 1
+    7 3 1
+    5 3 1
+    5 2 1
+    3 2 1
+    3 3 1
+    1 3 1
+    1 4 1
+    0 4 1
+    0 6 1
+    3 6 1
+    3 5 1
+];
+
+Lim_ep = 11;
