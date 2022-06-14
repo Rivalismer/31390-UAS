@@ -31,11 +31,6 @@ close all
 clc
 
 %% SIMULATION PARAMETERS
-%route = load('route_ex61.mat').route_2d-1; %path from ex 6.1
-
-%OPTION 1 - TEST ROUTE
-route = [0 0 1 ; 9 0 1 ; 9 9 1]; %test route
-
 % Full test
 route = [
     0 0 1
@@ -65,7 +60,7 @@ route = [
 
 % 6.2 test routes
 %route = [0 0 1; 1 0 1];
-%route = [0 0 1; 3 0 1];
+route = [0 0 1; 5 0 1];
 %route = [0 0 1; 9 0 1];
 
 
@@ -88,7 +83,7 @@ inertia_xx = 0.007 ;
 inertia_yy = 0.007 ;
 inertia_zz = 0.012 ;
 arm_length = 0.17 ;
-rotor_offset_top = 0.01 ;
+rotor_offset_top = 0.01 ; 
 motor_constant = 8.54858e-06 ;
 moment_constant = 0.016 ;
 max_rot_velocity = 838 ;
@@ -104,35 +99,47 @@ reference_area = pi * 75e-3^2;
 
 
 % Position Controller values
-K_pxy = 5.0; % 0.6* Kpxymax = 0.0858
-K_dxy = 2.8; % Tc/8 = 0.65
+tf_xy = [0 -1 0
+    1 0 0];
+K_pxy = 4.55; % 0.6* Kpxymax = 0.0858
+K_dxy = 3.65; % Tc/8 = 0.65
 K_ixy = 0; % 2/Tc = 0.3846
 
 % Attitude Controller values
 I_xyz = diag([inertia_xx inertia_yy inertia_zz]);
-ut = 30/180 * pi;
-K_p = 1.5;
-K_d = 0.5; %Tc / 8
-K_i = 0; %1.4925....
+%ut = 15/180 * pi;
+K_p = 2.2;
+K_d = 4.5; %Tc / 8
+K_i = 0; %1.4925.....
 
 %% Plotting 6.2
 close all
-fp = linspace(0,10,length(out.x(1,:)));
+lim = 25;
+fp = linspace(0,lim,length(out.x(1,:)));
 figure
 plot(fp, out.x(1,:));
-title('X - position with input 1')
+title('X - position with input 9')
 xlabel('Time(s)')
 ylabel('Position')
-xlim([0 10])
+xlim([0 lim])
+
+figure
+plot(fp, out.x(2,:));
+title('Y - position')
+xlabel('Time(s)')
+ylabel('Position')
+xlim([0 lim])
 
 %% Plotting 6.3
 close all
-lim = 2.5;
+lim = 25;
+limy = 0.6;
 fp = linspace(0,lim, length(out.theta(1,:)));
 figure
 subplot(3,1,1)
 plot(fp, out.theta(1,:))
 xlim([0 lim])
+ylim([-limy limy])
 xlabel('Time(s)')
 ylabel('Value in radians')
 title('\phi - Angle')
@@ -140,6 +147,7 @@ title('\phi - Angle')
 subplot(3,1,2)
 plot(fp, out.theta(2,:))
 xlim([0 lim])
+ylim([-limy limy])
 xlabel('Time(s)')
 ylabel('Value in radians')
 title('\theta - Angle')
@@ -147,6 +155,7 @@ title('\theta - Angle')
 subplot(3,1,3)
 plot(fp, out.theta(3,:))
 xlim([0 lim])
+ylim([-limy limy])
 xlabel('Time(s)')
 ylabel('Value in radians')
 title('\psi - Angle')
