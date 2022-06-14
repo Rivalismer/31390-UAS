@@ -60,7 +60,7 @@ route = [
 
 % 6.2 test routes
 %route = [0 0 1; 1 0 1];
-route = [0 0 1; 5 0 1];
+%route = [0 0 1; 5 0 1];
 %route = [0 0 1; 9 0 1];
 
 
@@ -101,20 +101,19 @@ reference_area = pi * 75e-3^2;
 % Position Controller values
 tf_xy = [0 -1 0
     1 0 0];
-K_pxy = 4.55; % 0.6* Kpxymax = 0.0858
-K_dxy = 3.65; % Tc/8 = 0.65
-K_ixy = 0; % 2/Tc = 0.3846
+K_pxy = diag([5 5 2]);
+K_dxy = diag([3.5 3.5 1.8]);
+K_ixy = diag([0 0 0]);
 
 % Attitude Controller values
 I_xyz = diag([inertia_xx inertia_yy inertia_zz]);
-%ut = 15/180 * pi;
-K_p = 2.2;
-K_d = 4.5; %Tc / 8
-K_i = 0; %1.4925.....
+K_p = diag([5 5 1]);
+K_d = diag([1.5 1.5 1.5]);
+K_i = diag([0 0 0]);
 
 %% Plotting 6.2
 close all
-lim = 25;
+lim = 20;
 fp = linspace(0,lim,length(out.x(1,:)));
 figure
 plot(fp, out.x(1,:));
@@ -130,9 +129,13 @@ xlabel('Time(s)')
 ylabel('Position')
 xlim([0 lim])
 
+figure
+plot(out.x(1,:), out.x(2,:))
+title('Trajectory of drone in maze')
+
 %% Plotting 6.3
-close all
-lim = 25;
+%close all
+%lim = 25;
 limy = 0.6;
 fp = linspace(0,lim, length(out.theta(1,:)));
 figure
