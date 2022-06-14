@@ -87,9 +87,9 @@ x_scale = 0.65;
 y_scale = 0.55;
 z_scale = 0.75;
 
-x_offset = 0.3;
-y_offset = 0.5;
-z_offset = 0.25;
+x_offset = 0.16;
+y_offset = 0.42;
+z_offset = 0.08; 
 
 % Make a copy of the route
 route_scaled = route;
