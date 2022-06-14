@@ -36,10 +36,37 @@ clc
 %OPTION 1 - TEST ROUTE
 route = [0 0 1 ; 9 0 1 ; 9 9 1]; %test route
 
+% Full test
+route = [
+    0 0 1
+    7 0 1
+    7 3 1
+    5 3 1
+    5 2 1
+    3 2 1
+    3 3 1
+    1 3 1
+    1 4 1
+    0 4 1
+    0 6 1
+    3 6 1
+    3 5 1
+];
+%% Non-full test
+%route = load('route_ex61.mat').route_2d-1; %path from ex 6.1
+
+%OPTION 1 - TEST ROUTE
+%route = [0 0 1 ; 9 0 1 ; 9 9 1]; %test route
+
 %OPTINOA 2 - EX6.1 ROUTE
 %run desired section in maze-ex6.4/maze_plotting script and comment
 %the route above to r
 %route = [route ones(size(route,1),1)];
+
+% 6.2 test routes
+%route = [0 0 1; 1 0 1];
+%route = [0 0 1; 3 0 1];
+%route = [0 0 1; 9 0 1];
 
 
 wall_color = [0.8 0.2 0.2];
@@ -74,3 +101,51 @@ mix_matrix = inv(motor_constant * allocation_matrix) ;
 air_density = 1.2041;
 drag_coefficient = 0.47;
 reference_area = pi * 75e-3^2;
+
+
+% Position Controller values
+K_pxy = 5.0; % 0.6* Kpxymax = 0.0858
+K_dxy = 2.8; % Tc/8 = 0.65
+K_ixy = 0; % 2/Tc = 0.3846
+
+% Attitude Controller values
+I_xyz = diag([inertia_xx inertia_yy inertia_zz]);
+ut = 15/180 * pi;
+K_p = 3.3;
+K_d = 3; %Tc / 8
+K_i = 0; %1.4925....
+
+%% Plotting 6.2
+close all
+fp = linspace(0,10,length(out.x(1,:)));
+figure
+plot(fp, out.x(1,:));
+title('X - position with input 1')
+xlabel('Time(s)')
+ylabel('Position')
+xlim([0 10])
+
+%% Plotting 6.3
+close all
+fp = linspace(0,10, length(out.theta(:,1)));
+figure
+subplot(3,1,1)
+plot(fp, out.theta(:,1))
+xlim([0 10])
+xlabel('Time(s)')
+ylabel('Value in radians')
+title('\phi - Angle')
+
+subplot(3,1,2)
+plot(fp, out.theta(:,2))
+xlim([0 10])
+xlabel('Time(s)')
+ylabel('Value in radians')
+title('\theta - Angle')
+
+subplot(3,1,3)
+plot(fp, out.theta(:,3))
+xlim([0 10])
+xlabel('Time(s)')
+ylabel('Value in radians')
+title('\psi - Angle')
