@@ -31,6 +31,11 @@ close all
 clc
 
 %% SIMULATION PARAMETERS
+%route = load('route_ex61.mat').route_2d-1; %path from ex 6.1
+
+%OPTION 1 - TEST ROUTE
+route = [0 0 1 ; 9 0 1 ; 9 9 1]; %test route
+
 % Full test
 route = [
     0 0 1
