@@ -49,13 +49,13 @@ waypoints{2} = [9 ; 9 ; 1];
 
 % Fix this...
 order = 7;
-corridors.times = [0 1.15 1.84 2.99]; %[1 4]
-corridors.x_lower = [-0.5 3.5 7.65 8.6]; %[-1 8]
-corridors.x_upper = [0.5 4.5 7.85 9.25]; %[1 10]
-corridors.y_lower = [-0.5 -0.6 0.7 6.85]; %[-1 8]
-corridors.y_upper = [0.5 -0.48 0.9  7.25]; %[1 10]
-corridors.z_lower = [0 0 0 0]; %[0 0]
-corridors.z_upper = [2 2 2 2]; %[2 2]
+corridors.times = [0 1.15 1.84 2.99];
+corridors.x_lower = [-0.5 3.5 7.65 8.6];
+corridors.x_upper = [0.5 4.5 7.85 9.25];
+corridors.y_lower = [-0.5 -0.6 0.7 6.85];
+corridors.y_upper = [0.5 -0.48 0.9  7.25];
+corridors.z_lower = [0 0 0 0];
+corridors.z_upper = [2 2 2 2];
 % ...until here
 
 % % Fix this...
