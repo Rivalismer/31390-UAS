@@ -94,7 +94,7 @@ allocation_matrix = ...
      -moment_constant moment_constant -moment_constant moment_constant] ;
 mix_matrix = inv(motor_constant * allocation_matrix) ;
 air_density = 1.2041;
-drag_coefficient = 0.47;
+drag_coefficient = 0.47; 
 reference_area = pi * 75e-3^2;
 
 
@@ -113,11 +113,11 @@ K_i = diag([0 0 0]);
 
 %% Plotting 6.2
 close all
-lim = 20;
+lim = 25;
 fp = linspace(0,lim,length(out.x(1,:)));
 figure
 plot(fp, out.x(1,:));
-title('X - position with input 9')
+title('X - position')
 xlabel('Time(s)')
 ylabel('Position')
 xlim([0 lim])
