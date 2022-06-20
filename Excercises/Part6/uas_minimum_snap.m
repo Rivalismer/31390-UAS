@@ -66,5 +66,5 @@ tic, poly_traj.solve; toc
 % PLOTS
 if make_plots
     poly_traj.showPath(3)
-    poly_traj.showTraj(3)
+    %poly_traj.showTraj(3)
 end
