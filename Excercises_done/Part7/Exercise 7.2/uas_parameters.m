@@ -31,7 +31,6 @@ close all
 clc
 
 %% SIMULATION PARAMETERS
-%% SIMULATION PARAMETERS
 %route = load('route_ex71.mat').route_scaled;
 % route = [
 %     route(1,:)
